@@ -1,0 +1,8 @@
+- name: Shutdown
+  hosts: rpi
+  become: true
+  tasks:
+  - name: Shutdown
+    become: true
+    community.general.shutdown:
+      delay: 60

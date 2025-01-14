@@ -1,0 +1,67 @@
+- name: SSH - configures SSH service
+  hosts: rpi
+  become: true
+  tasks:
+  # PermitRootLogin
+  - name: SSH - PasswordAuthentication - set to no
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "PermitRootLogin no"
+      state: present
+    
+  - name: SSH - PermitRootLogin - never true (yes)
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "PermitRootLogin yes"
+      state: absent
+    
+  - name: SSH - PermitRootLogin - remove default prohibit-password
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "#PermitRootLogin prohibit-password"
+      state: absent
+    
+  # PasswordAuthentication
+  - name: SSH - PasswordAuthentication - set to no
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "PasswordAuthentication no"
+      state: present
+
+  - name: SSH - PasswordAuthentication - never true (yes)
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "PasswordAuthentication yes"
+      state: absent
+
+  - name: SSH - PasswordAuthentication - remove default prohibit-password
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "#PasswordAuthentication yes"
+      state: absent
+
+  # AddressFamily
+  - name: SSH - AddressFamily - set to inet
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "AddressFamily inet" # IPv4
+      state: present
+    
+  - name: SSH - AddressFamily - never any (yes)
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "AddressFamily any"
+      state: absent
+    
+
+  - name: SSH - AddressFamily - remove default prohibit-password
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      line: "#AddressFamily any"
+      state: absent
+
+  # Restart
+  - name: SSH - restart service
+    service:
+      name: ssh
+      state: restarted
