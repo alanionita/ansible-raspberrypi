@@ -1,6 +1,6 @@
 # Summary
 
-A collection of Ansible playbooks that support the management on Raspberry Pi device headlessly. 
+A collection of Ansible playbooks that support headless Raspberry Pi device management. 
 
 # Dependencies
 
