@@ -1,0 +1,24 @@
+- name: Install packages
+  hosts: rpi
+  become: true
+  tasks:
+  - name: Steam Link - install
+    apt:
+      name: steamlink
+      state: present
+      update_cache: true
+  - name: Flatpak - install
+    apt:
+      name: flatpak
+      state: present
+  - name: Flatpak - Add the flathub repo
+    community.general.flatpak_remote:
+      name: flathub
+      state: present
+      flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      enabled: true
+  - name: FreeTube - install # Youtube alternative frontend
+    community.general.flatpak:
+      name: io.freetubeapp.FreeTube
+      state: latest # always update  
+      remote: flathub  

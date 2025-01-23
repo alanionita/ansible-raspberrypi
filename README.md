@@ -73,7 +73,7 @@ PLAYBOOK - each make command is set up to be a 1-2-1 map with a playbook
 
 eg
 
-`make user=test_user ssh`
+`make user=REMOTE_USER ssh`
 
 # Running: Sequence of playbooks
 

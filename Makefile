@@ -6,3 +6,6 @@ shutdown:
 
 ssh:
 	ansible-playbook -i inventory.ini ssh.yml --user $(user)
+
+apps:
+	ansible-playbook -i inventory.ini apps.yml --user $(user)
